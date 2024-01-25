@@ -12,7 +12,7 @@ export class SceneOne extends GameScene {
     }
 
     override enableScene(): void {
-        super.disableScene();
+        super.enableScene();
         this.clearStacks();
 
         this.cardStack1 = this.createCardStack(144);

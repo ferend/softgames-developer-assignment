@@ -28,7 +28,7 @@ export class FlameParticle extends ParticleContainer {
 
     private emitterConfig = {
         lifetime: {
-            min: 0.5,
+            min: 0.4,
             max: 0.7,
         },
         frequency: 0.001,
@@ -76,7 +76,7 @@ export class FlameParticle extends ParticleContainer {
                     speed: {
                         list: [
                             {
-                                value: 500,
+                                value: 450,
                                 time: 0,
                             },
                             {
@@ -99,17 +99,17 @@ export class FlameParticle extends ParticleContainer {
                     scale: {
                         list: [
                             {
-                                value: 0.25,
+                                value: 0.35,
                                 time: 0,
                             },
                             {
-                                value: 0.75,
+                                value: 0.65,
                                 time: 1,
                             },
                         ],
                         isStepped: false,
                     },
-                    minMult: 1,
+                    minMult: 2,
                 },
             },
             {
