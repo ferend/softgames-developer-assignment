@@ -1,7 +1,5 @@
-// @ts-ignore
-
 import "./style.css";
-import { Application, Assets, Text } from "pixi.js";
+import { Application, Assets } from "pixi.js";
 import { gameConfig } from "./gameConfig";
 import Game from "./Game";
 
@@ -32,12 +30,17 @@ window.onload = async (): Promise<void> => {
     new Game(app);
 };
 
-async function loadGameAssets(): Promise<void> {
+async function loadGameAssets(): Promise<void> {;
+    
     const manifest = {
         bundles: [
             {
                 name: "static",
                 assets: [
+                    {
+                        name: "font",
+                        srcs: "./assets/PixelRegular.otf",
+                    },
                     {
                         name: "bg",
                         srcs: "./assets/bg.png",
@@ -100,7 +103,7 @@ async function loadGameAssets(): Promise<void> {
     };
 
     await Assets.init({ manifest });
-    await Assets.loadBundle(["static", "card", "particle", "fire", "social"]);
+    await Assets.loadBundle(["font", "static", "card", "particle", "fire", "social"]);
 }
 
 function resizeCanvas(): void {

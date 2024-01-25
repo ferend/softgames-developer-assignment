@@ -11,7 +11,7 @@ export default class Game {
 
     constructor(app: Application) {
         this.app = app;
-        const background = this.createBackground(app);
+        const background = this.createBackground();
         app.stage.addChild(background);
         this.createHeader(app);
 
@@ -38,11 +38,11 @@ export default class Game {
         app.stage.addChild(headerText);
     }
 
-    private createBackground(app: Application<ICanvas>) {
+    private createBackground() {
         const backgroundTexture = Texture.from("bg");
         const background = new Sprite(backgroundTexture);
-        background.width = app.screen.width;
-        background.height = app.screen.height;
+        background.width = gameConfig.width;
+        background.height = gameConfig.height;
         return background;
     }
 }

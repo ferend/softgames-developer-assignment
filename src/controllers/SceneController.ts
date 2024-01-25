@@ -30,7 +30,11 @@ export class SceneController {
             button.position.set(gameConfig.width / 2.2, 60 * index + 200);
             button.interactive = true;
 
-            button.on("click", () => {
+            button.on("pointertap", () => {
+                this.switchScene(index);
+            });
+
+            button.on("touchend", () => {
                 this.switchScene(index);
             });
 
@@ -69,10 +73,16 @@ export class SceneController {
             backButton.style.fill = ["#FFD700", "#FFA500"];
         });
 
-        backButton.on("click", () => {
+        backButton.on("pointertap", () => {
             (this.currentScene as GameScene).disableScene();
             this.returnToMainMenu();
         });
+
+        backButton.on("touchend", () => {
+            (this.currentScene as GameScene).disableScene();
+            this.returnToMainMenu();
+        });
+
         this.currentScene.addChild(backButton);
         this.app.stage.addChild(this.currentScene);
         this.app.stage.removeChild(this.menuContainer);
