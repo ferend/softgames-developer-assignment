@@ -30,8 +30,7 @@ window.onload = async (): Promise<void> => {
     new Game(app);
 };
 
-async function loadGameAssets(): Promise<void> {;
-    
+async function loadGameAssets(): Promise<void> {
     const manifest = {
         bundles: [
             {
