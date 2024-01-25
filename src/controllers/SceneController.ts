@@ -3,6 +3,7 @@ import { SceneOne } from "../scenes/SceneOne";
 import { SceneTwo } from "../scenes/SceneTwo";
 import { SceneThree } from "../scenes/SceneThree";
 import { gameConfig } from "../gameConfig";
+import { GameScene } from "../core/GameScene";
 
 export class SceneController {
     private scenes: Container[];
@@ -36,14 +37,14 @@ export class SceneController {
     }
 
     private switchScene(sceneIndex: number): void {
-        this.app.stage.removeChild(this.currentScene);
-
+        this.currentScene.removeChildren();
         this.currentScene = this.scenes[sceneIndex];
-
+        (this.currentScene as GameScene).enableScene();
         const backButton = new Text("Back to Main Menu", { fill: 0xffffff });
         backButton.position.set(gameConfig.width / 2 - 300, gameConfig.height / 2 + 200);
         backButton.interactive = true;
         backButton.on("click", () => {
+            (this.currentScene as GameScene).disableScene();
             this.returnToMainMenu();
         });
         this.currentScene.addChild(backButton);
@@ -53,7 +54,7 @@ export class SceneController {
 
     private returnToMainMenu(): void {
         this.app.stage.removeChild(this.currentScene);
-        this.currentScene.removeChildren();
+        // Restart the process on that scene
         this.currentScene = new Container();
         this.app.stage.addChild(this.menuContainer);
     }
