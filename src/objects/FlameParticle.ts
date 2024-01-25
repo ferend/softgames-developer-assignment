@@ -10,6 +10,7 @@ export class FlameParticle extends ParticleContainer {
     public createEmitters(): void {
         const emitter1 = new Emitter(this, this.emitterConfig);
         const emitter2 = new Emitter(this, this.emitterConfig2);
+        const emitter3 = new Emitter(this, this.emitterConfig3);
 
         let elapsed = Date.now();
 
@@ -17,10 +18,9 @@ export class FlameParticle extends ParticleContainer {
             requestAnimationFrame(update);
 
             const now = Date.now();
-
             emitter2.update((now - elapsed) * 0.001);
             emitter1.update((now - elapsed) * 0.001);
-
+            emitter3.update((now - elapsed) * 0.001);
             elapsed = now;
         };
 
@@ -29,8 +29,8 @@ export class FlameParticle extends ParticleContainer {
 
     private emitterConfig = {
         lifetime: {
-            min: 0.4,
-            max: 0.7,
+            min: 0.2,
+            max: 0.5,
         },
         frequency: 0.001,
         emitterLifetime: 0,
@@ -270,6 +270,124 @@ export class FlameParticle extends ParticleContainer {
                         radius: 30,
                         innerRadius: -20,
                         affectRotation: true,
+                    },
+                },
+            },
+        ],
+    };
+    private emitterConfig3 = {
+        lifetime: {
+            min: 0.6,
+            max: 1.0,
+        },
+        frequency: 0.005,
+        emitterLifetime: 0,
+        maxParticles: 1000,
+        addAtBack: false,
+        pos: {
+            x: 0,
+            y: 150,
+        },
+        behaviors: [
+            {
+                type: "alpha",
+                config: {
+                    alpha: {
+                        list: [
+                            {
+                                value: 0.8,
+                                time: 0,
+                            },
+                            {
+                                value: 0.2,
+                                time: 1,
+                            },
+                        ],
+                        isStepped: false,
+                    },
+                },
+            },
+            {
+                type: "moveSpeed",
+                config: {
+                    speed: {
+                        list: [
+                            {
+                                value: 200,
+                                time: 0,
+                            },
+                            {
+                                value: 100,
+                                time: 1,
+                            },
+                        ],
+                        isStepped: true,
+                    },
+                    minMult: 1,
+                },
+            },
+            {
+                type: "scale",
+                config: {
+                    scale: {
+                        list: [
+                            {
+                                value: 0.2,
+                                time: 0,
+                            },
+                            {
+                                value: 0.3,
+                                time: 1,
+                            },
+                        ],
+                        isStepped: false,
+                    },
+                    minMult: 2,
+                },
+            },
+            {
+                type: "color",
+                config: {
+                    color: {
+                        list: [
+                            {
+                                time: 0,
+                                value: "fff191",
+                            },
+                            {
+                                time: 1,
+                                value: "111111",
+                            },
+                        ],
+                        isStepped: false,
+                    },
+                },
+            },
+            {
+                type: "rotation",
+                config: {
+                    accel: 0,
+                    minSpeed: 50,
+                    maxSpeed: 50,
+                    minStart: 0,
+                    maxStart: 360,
+                },
+            },
+            {
+                type: "textureRandom",
+                config: {
+                    textures: [Texture.from("fire")],
+                },
+            },
+            {
+                type: "spawnShape",
+                config: {
+                    type: "circle",
+                    data: {
+                        x: 0,
+                        y: 0,
+                        radius: 1,
+                        innerRadius: -20,
                     },
                 },
             },

@@ -7,6 +7,7 @@ export class SceneThree extends GameScene {
     constructor(app: Application) {
         super("Particles");
         this.emitter = new FlameParticle();
+        this.emitter.position.y = +30;
         this.addChild(this.emitter);
         this.emitter.createEmitters();
         app.renderer.render(app.stage);
