@@ -13,5 +13,5 @@ body {
     height: 100%;
 }
 canvas {
-    height: 100%;
+    display:block;
 }
