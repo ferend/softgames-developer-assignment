@@ -8,10 +8,11 @@ export class SceneTwo extends GameScene {
     private spriteField: Sprite;
 
     constructor() {
-        super("Scene Two");
+        super("Text");
         this.textField = new Text("", {
-            fontSize: Math.floor(Math.random() * 20) + 10,
-            fill: 0xffffff, // White color
+            fontSize: Math.floor(Math.random()) + 40,
+            fill: 0xffffff,
+            fontFamily: "PixelRegular",
         });
         this.textField.position.x = this.width / 2 - 300;
         this.textField.position.y = this.height / 2;

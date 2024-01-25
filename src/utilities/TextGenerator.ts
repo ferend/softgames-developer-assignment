@@ -1,5 +1,6 @@
 import { Sprite, Text, Texture } from "pixi.js";
 
+// Utility class for text generation with given parameters.
 export default class TextGenerator {
     private emojis: string[] = ["LinkedIn", "Pinterest", "Twitter", "WhatsApp", "YouTube"];
     public intervalId: NodeJS.Timeout | null = null;
@@ -8,7 +9,7 @@ export default class TextGenerator {
             const randomEmoji = this.pickRandomEmoji();
             textField.text = randomEmoji;
             spriteField.texture = Texture.from(randomEmoji);
-            spriteField.position.set(textField.width - 150, textField.height - 240);
+            spriteField.position.set(textField.width - 300, textField.height - 240);
         }, 2000);
     }
 

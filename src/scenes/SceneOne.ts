@@ -1,13 +1,18 @@
 import { GameScene } from "../core/GameScene";
 import { Card } from "../objects/Card";
 import { Constants } from "../utilities/Constants";
+import { Graphics } from "pixi.js";
 
 export class SceneOne extends GameScene {
     private cardStack1: Card[] = [];
     private cardStack2: Card[] = [];
     private interval: NodeJS.Timeout | null = null;
+    private destinationMarker: Graphics;
+
     constructor() {
-        super("CARDS");
+        super("Cards");
+        this.destinationMarker = new Graphics();
+        this.addChild(this.destinationMarker);
     }
 
     override enableScene(): void {
@@ -70,6 +75,13 @@ export class SceneOne extends GameScene {
 
         const startPosition = { x: card.x, y: card.y };
         const endPosition = { x: this.position.x - 200, y: this.position.y - 450 };
+
+        if (this.destinationMarker) {
+            this.destinationMarker.clear();
+        }
+
+        this.destinationMarker.lineStyle(2, 0x800080);
+        this.destinationMarker.drawRect(endPosition.x - 20, endPosition.y - 30, 130, 200);
 
         const startTime = Date.now();
         const animate = () => {

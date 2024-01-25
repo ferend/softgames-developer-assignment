@@ -1,37 +1,48 @@
-import { Application, Text } from "pixi.js";
+import { Application, ICanvas, Sprite, Text, Texture } from "pixi.js";
 import { SceneController } from "./controllers/SceneController";
+import { gameConfig } from "./gameConfig";
 
+// Entry point of project. Creates scene controller, adds title, FPS counter etc.
 export default class Game {
     app: Application;
     private sceneController: SceneController;
 
     private fpsCounter = new Text("FPS: 0", { fill: "0xFFFFFF", fontSize: 20 });
-    private timeValues: number[] = [];
-    private lastTime: number = 0;
 
     constructor(app: Application) {
         this.app = app;
+        const background = this.createBackground(app);
+        app.stage.addChild(background);
+        this.createHeader(app);
+
         this.sceneController = new SceneController(app);
         app.ticker.add(() => {
-            const currentTime = new Date().getTime();
-            this.timeValues.push(1000 / (currentTime - this.lastTime));
-
-            if (this.timeValues.length === 30) {
-                let total = 0;
-                for (let i = 0; i < 30; i++) {
-                    total += this.timeValues[i];
-                }
-
-                this.fpsCounter.text = "FPS: " + (total / 30).toFixed(2);
-
-                this.timeValues.length = 0;
-            }
-
-            this.lastTime = currentTime;
+            this.fpsCounter.text = `FPS: ${Math.round(app.ticker.FPS)}`;
         });
 
         this.fpsCounter.position.set(10, 10);
 
         app.stage.addChild(this.fpsCounter);
+    }
+
+    private createHeader(app: Application<ICanvas>) {
+        const headerText = new Text("Welcome To My Assignment", {
+            fill: ["#FFD700", "#FFA500"],
+            fontSize: 40,
+            fontFamily: "PixelRegular",
+            stroke: "#000000",
+            strokeThickness: 4,
+        });
+
+        headerText.position.set(gameConfig.width / 2 - 220, gameConfig.height / 2 - 240);
+        app.stage.addChild(headerText);
+    }
+
+    private createBackground(app: Application<ICanvas>) {
+        const backgroundTexture = Texture.from("bg");
+        const background = new Sprite(backgroundTexture);
+        background.width = app.screen.width;
+        background.height = app.screen.height;
+        return background;
     }
 }

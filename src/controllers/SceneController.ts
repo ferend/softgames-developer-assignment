@@ -22,12 +22,24 @@ export class SceneController {
 
     private createMainMenu(): void {
         this.scenes.forEach((scene, index) => {
-            const button = new Text(`Scene ${index + 1}`, { fill: 0xffffff });
+            const button = new Text(`Scene ${index + 1}`, {
+                fill: ["#FFD700", "#FFA500"],
+                fontSize: 40,
+                fontFamily: "PixelRegular",
+            });
             button.position.set(gameConfig.width / 2.2, 60 * index + 200);
             button.interactive = true;
 
             button.on("click", () => {
                 this.switchScene(index);
+            });
+
+            button.on("mouseover", () => {
+                button.style.fill = ["#FFA500", "#FFD700"];
+            });
+
+            button.on("mouseout", () => {
+                button.style.fill = ["#FFD700", "#FFA500"];
             });
 
             this.menuContainer.addChild(button);
@@ -40,9 +52,23 @@ export class SceneController {
         this.currentScene.removeChildren();
         this.currentScene = this.scenes[sceneIndex];
         (this.currentScene as GameScene).enableScene();
-        const backButton = new Text("Back to Main Menu", { fill: 0xffffff });
+        const backButton = new Text("Back to Main Menu", {
+            fill: ["#FFD700", "#FFA500"],
+            fontFamily: "PixelRegular",
+            stroke: "#000000",
+            strokeThickness: 4,
+        });
         backButton.position.set(this.currentScene.x / 2 - 500, this.currentScene.y / 2);
         backButton.interactive = true;
+        // Add color change effect
+        backButton.on("mouseover", () => {
+            backButton.style.fill = ["#FFA500", "#FFD700"];
+        });
+
+        backButton.on("mouseout", () => {
+            backButton.style.fill = ["#FFD700", "#FFA500"];
+        });
+
         backButton.on("click", () => {
             (this.currentScene as GameScene).disableScene();
             this.returnToMainMenu();

@@ -1,5 +1,6 @@
 import { Sprite, Text, TextStyle, Texture } from "pixi.js";
 
+// Card object class for first task
 export class Card extends Sprite {
     constructor(spriteName: string, label: number) {
         super();
@@ -8,6 +9,7 @@ export class Card extends Sprite {
             label,
             new TextStyle({
                 fill: "purple",
+                fontFamily: "PixelRegular",
                 fontSize: 24,
             }),
         );

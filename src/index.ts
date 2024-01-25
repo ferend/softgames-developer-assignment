@@ -10,18 +10,6 @@ console.log(`Welcome Pixi version:  ${VERSION}`);
 
 const app = new Application(gameConfig);
 
-const fullScreenButton = new Text("Full Screen", { fill: "0xFFFFFF", fontSize: 20 });
-fullScreenButton.position.set(10, 40);
-fullScreenButton.interactive = true;
-fullScreenButton.on("pointerdown", toggleFullScreen);
-app.stage.addChild(fullScreenButton);
-
-function toggleFullScreen(): void {
-    window.addEventListener("resize", () => {
-        app.renderer.resize(window.innerWidth, window.innerHeight);
-    });
-}
-
 window.onload = async (): Promise<void> => {
     await loadGameAssets();
 
@@ -47,6 +35,15 @@ window.onload = async (): Promise<void> => {
 async function loadGameAssets(): Promise<void> {
     const manifest = {
         bundles: [
+            {
+                name: "static",
+                assets: [
+                    {
+                        name: "bg",
+                        srcs: "./assets/bg.png",
+                    },
+                ],
+            },
             {
                 name: "card",
                 assets: [
@@ -103,7 +100,7 @@ async function loadGameAssets(): Promise<void> {
     };
 
     await Assets.init({ manifest });
-    await Assets.loadBundle(["card", "particle", "fire", "social"]);
+    await Assets.loadBundle(["static", "card", "particle", "fire", "social"]);
 }
 
 function resizeCanvas(): void {

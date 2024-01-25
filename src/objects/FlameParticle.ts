@@ -1,6 +1,7 @@
 import { Emitter } from "@pixi/particle-emitter";
 import { ParticleContainer, Texture } from "pixi.js";
 
+// Flame particle class that extends ParticleContainer. Added in scene class.
 export class FlameParticle extends ParticleContainer {
     constructor() {
         super();
