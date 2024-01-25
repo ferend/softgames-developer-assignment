@@ -39,7 +39,7 @@ export class SceneOne extends GameScene {
     private createCardStack(count: number): Card[] {
         const stack: Card[] = [];
         for (let i = 1; i <= count; i++) {
-            const card = new Card("simple", i);
+            const card = new Card("card", i);
             card.x = gameConfig.width / 4 + i;
             card.y = i + 150;
             card.zIndex = i;

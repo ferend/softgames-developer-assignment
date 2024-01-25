@@ -48,11 +48,29 @@ async function loadGameAssets(): Promise<void> {
     const manifest = {
         bundles: [
             {
-                name: "simple",
+                name: "card",
                 assets: [
                     {
-                        name: "simple",
+                        name: "card",
                         srcs: "./assets/simpleCard.png",
+                    },
+                ],
+            },
+            {
+                name: "particle",
+                assets: [
+                    {
+                        name: "particle",
+                        srcs: "./assets/particle.png",
+                    },
+                ],
+            },
+            {
+                name: "fire",
+                assets: [
+                    {
+                        name: "fire",
+                        srcs: "./assets/fire.png",
                     },
                 ],
             },
@@ -60,7 +78,7 @@ async function loadGameAssets(): Promise<void> {
     };
 
     await Assets.init({ manifest });
-    await Assets.loadBundle(["simple"]);
+    await Assets.loadBundle(["card", "particle", "fire"]);
 }
 
 function resizeCanvas(): void {

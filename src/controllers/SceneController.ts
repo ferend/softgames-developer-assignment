@@ -13,7 +13,7 @@ export class SceneController {
 
     constructor(app: Application) {
         this.app = app;
-        this.scenes = [new SceneOne(), new SceneTwo(), new SceneThree()];
+        this.scenes = [new SceneOne(), new SceneTwo(), new SceneThree(app)];
         this.currentScene = new Container();
         this.menuContainer = new Container();
 

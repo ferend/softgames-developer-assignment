@@ -12,7 +12,6 @@ export default class Game {
     constructor(app: Application) {
         this.app = app;
         this.sceneController = new SceneController(app);
-        app.renderer.background.color = 0xf0f000;
         app.ticker.add(() => {
             const currentTime = new Date().getTime();
             this.timeValues.push(1000 / (currentTime - this.lastTime));
