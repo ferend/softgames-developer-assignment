@@ -17,7 +17,7 @@ export class SceneThree extends GameScene {
         this.addChild(this.emitter);
     }
 
-    override disableScene() {
+    override disableScene(): void {
         super.disableScene();
         this.removeChild(this.emitter);
     }

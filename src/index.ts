@@ -74,11 +74,36 @@ async function loadGameAssets(): Promise<void> {
                     },
                 ],
             },
+            {
+                name: "social",
+                assets: [
+                    {
+                        name: "LinkedIn",
+                        srcs: "./assets/linkedin.png",
+                    },
+                    {
+                        name: "Pinterest",
+                        srcs: "./assets/pinterest.png",
+                    },
+                    {
+                        name: "Twitter",
+                        srcs: "./assets/twitter.png",
+                    },
+                    {
+                        name: "WhatsApp",
+                        srcs: "./assets/wp.png",
+                    },
+                    {
+                        name: "YouTube",
+                        srcs: "./assets/yt.png",
+                    },
+                ],
+            },
         ],
     };
 
     await Assets.init({ manifest });
-    await Assets.loadBundle(["card", "particle", "fire"]);
+    await Assets.loadBundle(["card", "particle", "fire", "social"]);
 }
 
 function resizeCanvas(): void {

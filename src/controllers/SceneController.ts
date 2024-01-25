@@ -41,7 +41,7 @@ export class SceneController {
         this.currentScene = this.scenes[sceneIndex];
         (this.currentScene as GameScene).enableScene();
         const backButton = new Text("Back to Main Menu", { fill: 0xffffff });
-        backButton.position.set(gameConfig.width / 2 - 300, gameConfig.height / 2 + 200);
+        backButton.position.set(this.currentScene.x / 2 - 500, this.currentScene.y / 2);
         backButton.interactive = true;
         backButton.on("click", () => {
             (this.currentScene as GameScene).disableScene();

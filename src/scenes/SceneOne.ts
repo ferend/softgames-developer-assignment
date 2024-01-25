@@ -1,6 +1,5 @@
 import { GameScene } from "../core/GameScene";
 import { Card } from "../objects/Card";
-import { gameConfig } from "../gameConfig";
 import { Constants } from "../utilities/Constants";
 
 export class SceneOne extends GameScene {
@@ -20,7 +19,7 @@ export class SceneOne extends GameScene {
         this.moveCards();
     }
 
-    override disableScene() {
+    override disableScene(): void {
         super.disableScene();
         if (this.interval !== null) {
             clearInterval(this.interval);
@@ -40,8 +39,8 @@ export class SceneOne extends GameScene {
         const stack: Card[] = [];
         for (let i = 1; i <= count; i++) {
             const card = new Card("card", i);
-            card.x = gameConfig.width / 4 + i;
-            card.y = i + 150;
+            card.x = this.position.x - 650 + i;
+            card.y = i - 150;
             card.zIndex = i;
             stack.push(card);
             this.addChild(card);
@@ -70,7 +69,7 @@ export class SceneOne extends GameScene {
         destinationStack.push(card);
 
         const startPosition = { x: card.x, y: card.y };
-        const endPosition = { x: 650, y: 250 };
+        const endPosition = { x: this.position.x - 200, y: this.position.y - 450 };
 
         const startTime = Date.now();
         const animate = () => {

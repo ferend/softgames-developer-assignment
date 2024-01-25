@@ -36,8 +36,8 @@ export class FlameParticle extends ParticleContainer {
         maxParticles: 1000,
         addAtBack: false,
         pos: {
-            x: 400,
-            y: 440,
+            x: 0,
+            y: 120,
         },
         behaviors: [
             {
@@ -180,8 +180,8 @@ export class FlameParticle extends ParticleContainer {
         maxParticles: 1000,
         addAtBack: false,
         pos: {
-            x: 400,
-            y: 420,
+            x: 0,
+            y: 100,
         },
         behaviors: [
             {

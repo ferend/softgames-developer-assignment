@@ -5,7 +5,9 @@ export class GameScene extends Container {
     constructor(sceneName: string) {
         super();
         const text = new Text(sceneName, { fill: 0xffffff });
-        text.position.set(gameConfig.width / 2.4, gameConfig.height / 2 - 250);
+        this.position.x = gameConfig.width / 2;
+        this.position.y = gameConfig.height / 2;
+        text.position.set(this.position.x / 2 - 250, this.position.y - 500);
         text.interactive = true;
         this.sortableChildren = true;
         this.addChild(text);
